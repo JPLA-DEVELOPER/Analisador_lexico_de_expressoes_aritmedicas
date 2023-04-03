@@ -1,3 +1,14 @@
+#QUESTÃO 06
+
+#BACHARELADO EM CIÊNCIAS DA COMPUTAÇÃO
+#DISCIPLINA: COMPILADORES
+#PROFESSOR: ADONIAS CAETANO DE OLIVEIRA
+#ALUNOS: Janiel Carneiro, Willian de Oliveira e João Paulo Lima.
+
+
+
+# Algoritmo Analisador lexico para linguagem de expressoes aritmeticas feito em Python
+
 import re
 
 class Token:
@@ -6,7 +17,7 @@ class Token:
         self.valor = valor
 
     def __repr__(self):
-        return f"Tipo de Token({self.tipo}, {self.valor})" #saida
+        return f"Tipo de Token:{self.tipo}, VALOR: {self.valor}" #saida
 
 class AnalisadorLexico:
     def __init__(self, codigo):
@@ -31,7 +42,7 @@ class AnalisadorLexico:
             return Token('NÚMERO', int(valor))
 
         # Tokens de operadores
-        if self.codigo[self.posicao] in ['+', '-', '*', '/']:
+        if self.codigo[self.posicao] in ['+', '-', '*', '/','^']:
             token = Token('OPERAÇÃO', self.codigo[self.posicao])
             self.posicao += 1
             return token
@@ -48,7 +59,10 @@ class AnalisadorLexico:
 
 
 # Teste do analisador léxico
-codigo = '42+(675*31)-20925'
+print("--------------------------------------------------------------------------------------")
+print("Analisador Léxico em Python")
+codigo = input("Digite a expressão: ")
+#codigo = '42+(675*31)-20925'
 analisador = AnalisadorLexico(codigo)
 
 while True:

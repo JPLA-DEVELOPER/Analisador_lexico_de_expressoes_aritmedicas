@@ -1,9 +1,16 @@
-// 
-// exp_lexer.c
-// Analisador lexico para linguagem de expressoes aritmeticas
-//
-// Andrei de Araujo Formiga, 2014-07-25
-//
+//QUESTÃO 04
+
+//BACHARELADO EM CIÊNCIAS DA COMPUTAÇÃO
+//DISCIPLINA: COMPILADORES
+//PROFESSOR: ADONIAS CAETANO DE OLIVEIRA
+//ALUNOS: Janiel Carneiro, Willian de Oliveira e João Paulo Lima.
+
+
+
+// Algoritmo Analisador lexico para linguagem de expressoes aritmeticas
+
+// Esse algoritmo foi feito com base no algoritmo de Andrei de Araujo Formiga 2014-07-25
+// Foi feita uma modificação para que ele leia a expressão aritmética de um arquivo de texto chamado expressao.txt
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,7 +25,7 @@
 #define FALSE           0
 
 // constantes para tipo de token
-#define TOK_NUM         0 
+#define TOK_NUM         0
 #define TOK_OP          1
 #define TOK_PONT        2
 
@@ -28,16 +35,17 @@
 #define MULT            2
 #define DIV             3
 
+
 // constantes para valores de pontuacao (parenteses)
 #define PARESQ          0
 #define PARDIR          1
 
 // estrutura que representa um token
-typedef struct 
+typedef struct
 {
   int tipo;
   int valor;
-} Token; 
+} Token;
 
 
 // --- variaveis globais -------------------------------------------
@@ -57,7 +65,7 @@ int pos;
 
 // --- funcoes -----------------------------------------------------
 
-// funcao utilitaria para obter proximo caractere do codigo 
+// funcao utilitaria para obter proximo caractere do codigo
 // retorna -1 quando chega ao final da string
 char le_caractere(void)
 {
@@ -76,13 +84,13 @@ char le_caractere(void)
 // determina se um caractere eh um operador, e retorna o tipo se for
 int operador(char c)
 {
-  int res; 
+  int res;
 
   switch (c) {
   case '+':
     res = SOMA;
     break;
-    
+
   case '-':
     res = SUB;
     break;
@@ -94,6 +102,7 @@ int operador(char c)
   case '/':
     res = DIV;
     break;
+
 
   default:
     res = -1;
@@ -175,6 +184,8 @@ char *operador_str(int op)
     res = "DIV";
     break;
 
+
+
   default:
     res = "NENHUM";
   }
@@ -207,23 +218,31 @@ void imprime_token(Token *tok)
 // --- funcao principal --------------------------------------------
 int main(void)
 {
-  char  entrada[200];
-  Token tok;
+    FILE *fp;
+    char expressao[100];
+    Token tok;
+    // abre o arquivo
+    fp = fopen("expressao.txt", "r");
 
-  printf("Analise Lexica para Expressoes\n");
+    // verifica se o arquivo foi aberto com sucesso
+    if (fp == NULL) {
+        printf("Erro ao abrir o arquivo.");
+        return 1;
+    }
 
-  printf("Expressao: ");
-  fgets(entrada, 200, stdin);
+    // lê a expressão do arquivo
+    fgets(expressao, sizeof(expressao), fp);
 
-  inicializa_analise(entrada);
+    // fecha o arquivo
+    fclose(fp);
 
-  printf("\n===== Analise =====\n");
+    // inicializa a analise lexica com a expressao lida
+    inicializa_analise(expressao);
 
-  while (proximo_token(&tok) != NULL) {
-    imprime_token(&tok);
-  }
+    // imprime todos os tokens
+    while (proximo_token(&tok) != NULL) {
+        imprime_token(&tok);
+    }
 
-  printf("\n");
-
-  return 0;
+    return 0;
 }

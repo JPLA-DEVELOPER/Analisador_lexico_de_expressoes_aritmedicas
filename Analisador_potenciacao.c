@@ -1,9 +1,16 @@
-//
-// exp_lexer.c
-// Analisador lexico para linguagem de expressoes aritmeticas
-//
-// Andrei de Araujo Formiga, 2014-07-25
-//
+//QUESTÃO 05
+
+//BACHARELADO EM CIÊNCIAS DA COMPUTAÇÃO
+//DISCIPLINA: COMPILADORES
+//PROFESSOR: ADONIAS CAETANO DE OLIVEIRA
+//ALUNOS: Janiel Carneiro, Willian de Oliveira e João Paulo Lima.
+
+
+
+// Algoritmo Analisador lexico para linguagem de expressoes aritmeticas
+
+// Esse algoritmo foi feito com base no algoritmo de Andrei de Araujo Formiga 2014-07-25
+// Foi feita uma modificação para ele reconhecer o operador '^'
 
 #include <stdio.h>
 #include <stdlib.h>
