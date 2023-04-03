@@ -1,4 +1,4 @@
-//
+// 
 // exp_lexer.c
 // Analisador lexico para linguagem de expressoes aritmeticas
 //
@@ -18,7 +18,7 @@
 #define FALSE           0
 
 // constantes para tipo de token
-#define TOK_NUM         0
+#define TOK_NUM         0 
 #define TOK_OP          1
 #define TOK_PONT        2
 
@@ -27,24 +27,23 @@
 #define SUB             1
 #define MULT            2
 #define DIV             3
-#define POT             4  // adicionar constante para operador ^
 
 // constantes para valores de pontuacao (parenteses)
 #define PARESQ          0
 #define PARDIR          1
 
 // estrutura que representa um token
-typedef struct
+typedef struct 
 {
   int tipo;
   int valor;
-} Token;
+} Token; 
 
 
 // --- variaveis globais -------------------------------------------
 
 // string contendo os caracteres de operadores
-const char *ops = "+-*/^";
+const char *ops = "+-*/";
 
 // string que contem o codigo que esta em analise
 char *codigo;
@@ -58,7 +57,7 @@ int pos;
 
 // --- funcoes -----------------------------------------------------
 
-// funcao utilitaria para obter proximo caractere do codigo
+// funcao utilitaria para obter proximo caractere do codigo 
 // retorna -1 quando chega ao final da string
 char le_caractere(void)
 {
@@ -77,13 +76,13 @@ char le_caractere(void)
 // determina se um caractere eh um operador, e retorna o tipo se for
 int operador(char c)
 {
-  int res;
+  int res; 
 
   switch (c) {
   case '+':
     res = SOMA;
     break;
-
+    
   case '-':
     res = SUB;
     break;
@@ -94,10 +93,6 @@ int operador(char c)
 
   case '/':
     res = DIV;
-    break;
-
-  case '^':  // adicionar cláusula para reconhecer operador ^
-    res = POT;
     break;
 
   default:
@@ -180,10 +175,6 @@ char *operador_str(int op)
     res = "DIV";
     break;
 
-  case POT:  // adicionar cláusula para reconhecer operador ^
-    res = "POT";
-    break;
-
   default:
     res = "NENHUM";
   }
@@ -211,7 +202,6 @@ void imprime_token(Token *tok)
     printf("TIPO DE TOKEN DESCONHECIOO\n");
   }
 }
-
 
 
 // --- funcao principal --------------------------------------------
